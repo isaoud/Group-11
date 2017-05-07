@@ -1,0 +1,26 @@
+Ibraheem Saoud | 3041390 
+INSERTNAMEHERE | IMATERKULATION NUMBER 
+INSERTNAMEHERE | IMATERKULATION NUMBER 
+ 
+EX 3.1 
+	.module changeorientation( degree : Real) 
+		.if (degree – orientation) mod 360 < 180 
+		.then 
+			.left(degree – orientation) 
+		.else 
+			.right(degree – orientation) 
+		.endif 
+	.endmoudule 
+ 
+	.module movetopoint(x : Real; y : Real) 
+		.var currentX, currentY, currentOrientation : Real; 
+		.currentX = posx(); 
+		.currentY = posy(); 
+		.currentOrintation = orientation(); 
+		.changeorientation(0); 
+		.move(x – currentX); 
+		.changeorientation(90); 
+		.move(y – currentY); 
+		.changeorientation(currentOrientation); 
+	.endmoudule 
+ 
