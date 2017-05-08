@@ -1,0 +1,170 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+%                          Begin   Header                                      %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\documentclass[a4paper,11pt]{article}             % bestimmt das Aussehen eines Dokuments
+
+\usepackage[ngerman]{babel}         % Neue deutsche Rechtschreibung
+\usepackage[T1]{fontenc}            % Bessere Schriftdarstellung
+\usepackage{lmodern}                % Aktuelle Schrift
+
+\usepackage[intlimits]{amsmath}     % Zusaetzliche Matheumgebungen
+\usepackage{amssymb}                % Mathematische Symbole
+\usepackage{graphicx}               % notwendig fuer \includegraphics
+\usepackage{fancyhdr}               % Kopf- und Fusszeile
+\usepackage{lastpage}               % erzeugt Referez zu der letzten Seite
+\usepackage{moreverb}               % verbatimtab Umgeung
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing,shapes,decorations.text,decorations,calc,positioning,automata,matrix,arrows}
+
+
+% Seiteneinstelungen
+\setlength\textwidth{165mm}           % Breite
+\setlength\textheight{235mm}          % Hoehe
+\setlength\headheight{41pt}           % Hoehe der Kopfzeile
+\setlength\topmargin{-12mm}           % Abstand oben
+\setlength\oddsidemargin{0mm}         % Linker Rand
+\setlength\parindent{0pt}             % und ohne Einrueckung
+\setlength\parskip{1.7\medskipamount} % Absaetze abgesetzt
+\sloppy\pagestyle{fancy}
+
+%Kopf- und Fusszeileeinstellungen
+\renewcommand{\headrulewidth}{0.4pt} 	%obere Trennlinie
+\fancyfoot[C]{Seite:~\thepage~von~\pageref{LastPage}} %Seitennummer
+\renewcommand{\footrulewidth}{0.4pt} 	%untere Trennlinie
+
+% Ein paar hilfreiche Zeichen
+\newcommand{\R}{\mathbb{R}}                 % reelle Zahlen
+\newcommand{\N}{\mathbb{N}}                 % natuerliche Zahlen
+\newcommand{\e}{\text{e}}                   % eulersche Zahl
+\newcommand{\E}[1]{\cdot10^{#1}}            % x 10^{...}
+\newcommand{\qed}{\hspace*{\fill}q.e.d.}    % Beweis fertig
+\newcommand{\ON}[1]{{\cal O}(#1)}	    %O-Notation
+%\newcommand{\Aufgabe}[1]{{\vskip5mm\bf Aufgabe #1.\\}}
+
+\def\vblatt{~}
+\def\vtermin{~}
+\def\vbriefkasten{~}
+
+%Blattnummer, Abgabedatum und Namen mir Matrikelnummern in der Kopfzeile anpassen
+\newcommand{\dreinamen}[6]{\fancyhead[R]{#1 (#2)\\#3 (#4)\\#5 (#6)}} %Kopfzeile rechts
+\fancyhead[C]{\large{\bf{Blatt \vblatt }}}
+\fancyhead[L]{\textbf{Datenstrukturen und Algorithmen}\\ Sommersemester 2017 \\ \"Ubungsgruppe: \vtermin%\\Briefkasten: \vbriefkasten 
+}
+
+\newcommand{\blatt}[1]{\def\vblatt{#1}}
+\newcommand{\termin}[1]{\def\vtermin{#1}}
+\newcommand{\briefkasten}[1]{\def\vbriefkasten{#1}}
+
+%!!!!Neu Einfaches einbinden von Quelltexten
+\usepackage{listings}
+
+%Algorithmennotation als Quelltext verwenden.
+\lstdefinelanguage{alglang}
+{keywords={if, then, endif, else, repeat, until, endrepeat, while, do, endwhile, var, module, endmodule, mod, return, pre, post, reads, changes, mem, Type, Functions, Preconditions, Axioms},
+emph={Integer, Bool, Real, Char, String},
+sensitive=false,
+morecomment=[l]{--},
+morecomment=[s]{\{}{\}},
+morestring=[d]"  
+}
+\lstdefinestyle{algstyle}{
+  mathescape=true, 
+  basicstyle=\normalfont\sffamily, 
+  commentstyle=\normalfont\sffamily, 
+  keywordstyle=\sffamily\bfseries,
+  identifierstyle=\sffamily\itshape, 
+  emphstyle=\normalfont\sffamily, 
+  stringstyle=,
+  showstringspaces=false,        
+  columns=[l]fullflexible     
+}
+
+\newcommand{\lstjava}{\lstset { numbers=left,language=java,tabsize=2,numberstyle=\tiny ,numbersep=5pt,basicstyle=\scriptsize}}
+\newcommand{\lstalg}{\lstset { numbers=left,language=alglang,tabsize=2,numberstyle=\tiny,style=algstyle}}
+
+\newcounter{aufgabe}
+\setcounter{aufgabe}{0}
+
+\newcommand{\Aufgabe}{\noindent\newline\addtocounter{aufgabe}{1}\textbf{Aufgabe \vblatt.\theaufgabe}\\
+%\input{\theaufgabe}\bigskip
+}
+
+% Unteraufgaben (mit Enumeration)
+\def\labelenumi{(\arabic{enumi})}
+\parindent0mm % keine Absatzeinrückung
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+%                           Ende Header                                        %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+
+%!!!!anpassen an das Betriebssystem!!!, um Umlaute zu verwenden
+\usepackage[utf8]{inputenc}                      %Linux
+%\usepackage[latin1]{inputenc}                    %Windows
+%\usepackage[applemac]{inputenc}                  %Mac
+
+
+%Namen und Matrikelnummern anpassen
+\dreinamen{Ibraheem Saoud}{3041390}{Liang Chun Wong}{3037494}{Miroslav Valov}{3023792} %3er Gruppe
+
+
+%Termin der Uebungsgruppe und Raum anpassen z. B. \termin{Mo 10:15-11:45, BB 915}
+\termin{Di 16:15-18:45, BB 915}
+
+%Blattnummer anpassen z. B. \blatt{1}
+\blatt{3}
+
+\begin{document}
+
+\Aufgabe
+\begin{enumerate}
+
+\item Aufgabe
+
+
+\lstalg
+\begin{lstlisting}
+module changeorientation(degree : Real)
+var abs : Real;
+abs := (degree - orientation) mod 360;
+if abs < 180 then
+	left(abs);
+else
+	right(abs)
+endif
+endmodule
+\end{lstlisting}
+
+\item Aufgabe
+
+
+\lstalg
+\begin{lstlisting}
+module movetopoint(x, y : Real)
+var currOrientation, currX, currY : Real;
+currOrientation := orientation();
+currX := xpos();
+currY := ypos();
+changeorientation(0);
+move(x - currX);
+changeorientation(90);
+move(y - currY);
+changeorientation(currOrientation);
+endmodule
+\end{lstlisting}
+
+\end{enumerate}
+
+\Aufgabe
+\lstjava
+\lstinputlisting{Robot.java}
+
+\Aufgabe
+\begin{enumerate}
+\item \subitem statement ::= assignment | sequence | conditional | iteration | return
+\subitem return ::= expression ;
+\item expression ::= arithmeticexpr | booleanexpr | modulecall 
+\item modulecall ::= name(namelist) | name(expression)
+\end{enumerate}
+
+
+\end{document}
