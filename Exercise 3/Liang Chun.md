@@ -20,7 +20,7 @@ endmodule
 
 ### Specification
 ```
-var		n, prev, curr, fibn : Integer
+var	n, prev, curr, fibn : Integer
 prev 	n >= 0, prev = 1, curr = 0, fibn = 0;
 post 	fibn = fibonnaci(n)
 reads 	-
