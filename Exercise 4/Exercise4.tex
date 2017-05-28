@@ -111,7 +111,7 @@ morestring=[d]"
 \termin{Di 16:15-18:45, BB 915}
 
 %Blattnummer anpassen z. B. \blatt{1}
-\blatt{5}
+\blatt{4}
 
 \begin{document}
 
@@ -121,43 +121,46 @@ morestring=[d]"
 \item Aufgabe
 \lstalg
 \begin{lstlisting}
-iff r = lcm(n, m) => r = (n * m) / gcd(n, m)
+while $\neg$booleanexpr do
+    statement
+endwhile
 \end{lstlisting}
 
 \item Aufgabe
 \lstalg
 \begin{lstlisting}
-var n, m, r : Integer
-pre n $\geq$ 0 $\wedge$ m $\geq$ 0
-post r =  lcm(n, m)
-reads -
-changes n, m, r
-mem -
+repeat
+    statement
+until $\neg$booleanexpr
+endrepeat
 \end{lstlisting}
 
-\item Aufgabe
+\end{enumerate}
+
+\Aufgabe
+\textit{This task is based on the previous task 3.1}
+\\
+\begin{enumerate}
+\item changeorientation method
 \lstalg
 \begin{lstlisting}
-module lcm(n, m : Integer)
-var r : Integer;
-r := (n * m) / gcd(n, m)
-endmodule
+var     degree, abs : Real;
+pre     abs = (degree - orientation) % 360
+post    orientation() = degree
+reads   orientation
+changes abs, orientation
+mem     - 
 \end{lstlisting}
-\item Aufgabe
-\begin{lstlisting}
-public int gcd(int x, int y) {
-	int tmp;
-    while (y != 0) {
-    	tmp = x % y;
-        x = y;
-        y = tmp;
-    }
-    return x;
-}
 
-public int lcm(int n, int m) {
-	return (n * m) / gcd(n , m);
-}
+\item movetopoint method
+\lstalg
+\begin{lstlisting}
+var     x, y, currOrientation, currX, currY : Real;
+pre     currOrientation = orientation(), currX = xpos(), currY = ypos()
+post    xpos() = x, ypos() = y, orientation() = currOrientation
+reads   xpos, ypos, orientation
+changes xpos, ypos, orientation, currOrientation, currX, currY, x, y
+mem     -
 \end{lstlisting}
 
 \end{enumerate}
@@ -166,35 +169,32 @@ public int lcm(int n, int m) {
 
 \Aufgabe
 \begin{enumerate}
-\item Create(-2, 2)
-\item
-	\subitem Put(Create(-2, 2), 0, false)
-    \subitem Put(Put(Create(-2, 2), 0, false), -2, true)
-    \subitem Put(Put(Put(Create(-2, 2), 0, false), -2, true), 2, true)
-\item Get(Put(Put(Put(Create(-2, 2), 0, false), -2, true), 2, true), -2)
-\item Lower(Put(Put(Put(Create(-2, 2), 0, false), -2, true), 2, true))
-
-\end{enumerate}
-
-\Aufgabe
-\begin{enumerate}
-\item halve (division by 2)
-	\subitem Functions: 
-    	\subsubitem halve: Nat $\times$ Nat $\rightarrow$ Nat
-    \subitem Preconditions: 
-    	\subsubitem $\forall$i : Nat $\bullet$ pre(halve(i)) $\iff$ $\neg$ less(zero, i)
-	\subitem Axiom:
-        \subsubitem halve(zero) = zero
-        \subsubitem halve(succ(zero)) = zero
-        \subsubitem halve(i) = succ(halve(i-2))
-\item odd (predicate for imparity)
-	\subitem Functions: 
-    	\subsubitem Halve: odd $\rightarrow$ Bool
-    \subitem Preconditions: 
-    	\subsubitem -
-	\subitem Axiom:
-        \subsubitem odd(zero) = false
-        \subsubitem odd(succ(zero)) = true
+\item Specification
+\lstalg
+\begin{lstlisting}
+var		n, prev, curr, fibn : Integer
+pre 	n >= 0, prev = 1, curr = 0, fibn = 0;
+post 	fibn = fibonnaci(n)
+reads 	-
+changes	prev, curr, fibn
+mem 	-
+\end{lstlisting}
+\item Algorithm
+\lstalg
+\begin{lstlisting}
+module fib(n: Integer) : Integer
+	var prev, curr, fibn : Integer;
+	prev := 1;
+	curr := 0;
+	fibn := 0;
+	repeat n times
+		fibn := prev + curr;
+		prev := curr;
+		curr := fibn;
+	endrepeat;
+	return fibn;
+endmodule
+\end{lstlisting}
 \end{enumerate}
 
 

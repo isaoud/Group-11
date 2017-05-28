@@ -1,7 +1,7 @@
-# Exercise 3
+# Exercise 4
 #### Liang Chun Wong (3037494)
 
-## Exercise 3.3
+## Exercise 4.3
 ### Algorithm
 ```
 module fib(n: Integer) : Integer

@@ -111,7 +111,7 @@ morestring=[d]"
 \termin{Di 16:15-18:45, BB 915}
 
 %Blattnummer anpassen z. B. \blatt{1}
-\blatt{4}
+\blatt{3}
 
 \begin{document}
 
@@ -119,82 +119,51 @@ morestring=[d]"
 \begin{enumerate}
 
 \item Aufgabe
+
+
 \lstalg
 \begin{lstlisting}
-while $\neg$booleanexpr do
-    statement
-endwhile
+module changeorientation(degree : Real)
+var abs : Real;
+abs := (degree - orientation) mod 360;
+if abs < 180 then
+	left(abs);
+else
+	right(abs)
+endif
+endmodule
 \end{lstlisting}
 
 \item Aufgabe
+
+
 \lstalg
 \begin{lstlisting}
-repeat
-    statement
-until $\neg$booleanexpr
-endrepeat
-\end{lstlisting}
-
-\end{enumerate}
-
-\Aufgabe
-\textit{This task is based on the previous task 3.1}
-\\
-\begin{enumerate}
-\item changeorientation method
-\lstalg
-\begin{lstlisting}
-var     degree, abs : Real;
-pre     abs = (degree - orientation) % 360
-post    orientation() = degree
-reads   orientation
-changes abs, orientation
-mem     - 
-\end{lstlisting}
-
-\item movetopoint method
-\lstalg
-\begin{lstlisting}
-var     x, y, currOrientation, currX, currY : Real;
-pre     currOrientation = orientation(), currX = xpos(), currY = ypos()
-post    xpos() = x, ypos() = y, orientation() = currOrientation
-reads   xpos, ypos, orientation
-changes xpos, ypos, orientation, currOrientation, currX, currY, x, y
-mem     -
-\end{lstlisting}
-
-\end{enumerate}
-
-\newpage
-
-\Aufgabe
-\begin{enumerate}
-\item Specification
-\lstalg
-\begin{lstlisting}
-var		n, prev, curr, fibn : Integer
-pre 	n >= 0, prev = 1, curr = 0, fibn = 0;
-post 	fibn = fibonnaci(n)
-reads 	-
-changes	prev, curr, fibn
-mem 	-
-\end{lstlisting}
-\item Algorithm
-\lstalg
-\begin{lstlisting}
-module fib(n: Integer) : Integer
-	var prev, curr, fibn : Integer;
-	prev := 1;
-	curr := 0;
-	fibn := 0;
-	repeat n times
-		fibn := prev + curr;
-		prev := curr;
-		curr := fibn;
-	endrepeat;
-	return fibn;
+module movetopoint(x, y : Real)
+var currOrientation, currX, currY : Real;
+currOrientation := orientation();
+currX := xpos();
+currY := ypos();
+changeorientation(0);
+move(x - currX);
+changeorientation(90);
+move(y - currY);
+changeorientation(currOrientation);
 endmodule
 \end{lstlisting}
+
+\end{enumerate}
+
+\Aufgabe
+\lstjava
+\lstinputlisting{Robot.java}
+
+\Aufgabe
+\begin{enumerate}
+\item \subitem statement ::= assignment | sequence | conditional | iteration | return
+\subitem return ::= expression ;
+\item expression ::= arithmeticexpr | booleanexpr | modulecall 
+\item modulecall ::= name(namelist) | name(expression)
 \end{enumerate}
 
 

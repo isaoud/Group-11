@@ -111,7 +111,7 @@ morestring=[d]"
 \termin{Di 16:15-18:45, BB 915}
 
 %Blattnummer anpassen z. B. \blatt{1}
-\blatt{3}
+\blatt{5}
 
 \begin{document}
 
@@ -119,51 +119,82 @@ morestring=[d]"
 \begin{enumerate}
 
 \item Aufgabe
-
-
 \lstalg
 \begin{lstlisting}
-module changeorientation(degree : Real)
-var abs : Real;
-abs := (degree - orientation) mod 360;
-if abs < 180 then
-	left(abs);
-else
-	right(abs)
-endif
-endmodule
+iff r = lcm(n, m) => r = (n * m) / gcd(n, m)
 \end{lstlisting}
 
 \item Aufgabe
-
-
 \lstalg
 \begin{lstlisting}
-module movetopoint(x, y : Real)
-var currOrientation, currX, currY : Real;
-currOrientation := orientation();
-currX := xpos();
-currY := ypos();
-changeorientation(0);
-move(x - currX);
-changeorientation(90);
-move(y - currY);
-changeorientation(currOrientation);
+var n, m, r : Integer
+pre n $\geq$ 0 $\wedge$ m $\geq$ 0
+post r =  lcm(n, m)
+reads -
+changes n, m, r
+mem -
+\end{lstlisting}
+
+\item Aufgabe
+\lstalg
+\begin{lstlisting}
+module lcm(n, m : Integer)
+var r : Integer;
+r := (n * m) / gcd(n, m)
 endmodule
+\end{lstlisting}
+\item Aufgabe
+\begin{lstlisting}
+public int gcd(int x, int y) {
+	int tmp;
+    while (y != 0) {
+    	tmp = x % y;
+        x = y;
+        y = tmp;
+    }
+    return x;
+}
+
+public int lcm(int n, int m) {
+	return (n * m) / gcd(n , m);
+}
 \end{lstlisting}
 
 \end{enumerate}
 
-\Aufgabe
-\lstjava
-\lstinputlisting{Robot.java}
+\newpage
 
 \Aufgabe
 \begin{enumerate}
-\item \subitem statement ::= assignment | sequence | conditional | iteration | return
-\subitem return ::= expression ;
-\item expression ::= arithmeticexpr | booleanexpr | modulecall 
-\item modulecall ::= name(namelist) | name(expression)
+\item Create(-2, 2)
+\item
+	\subitem Put(Create(-2, 2), 0, false)
+    \subitem Put(Put(Create(-2, 2), 0, false), -2, true)
+    \subitem Put(Put(Put(Create(-2, 2), 0, false), -2, true), 2, true)
+\item Get(Put(Put(Put(Create(-2, 2), 0, false), -2, true), 2, true), -2)
+\item Lower(Put(Put(Put(Create(-2, 2), 0, false), -2, true), 2, true))
+
+\end{enumerate}
+
+\Aufgabe
+\begin{enumerate}
+\item halve (division by 2)
+	\subitem Functions: 
+    	\subsubitem halve: Nat $\times$ Nat $\rightarrow$ Nat
+    \subitem Preconditions: 
+    	\subsubitem $\forall$i : Nat $\bullet$ pre(halve(i)) $\iff$ $\neg$ less(zero, i)
+	\subitem Axiom:
+        \subsubitem halve(zero) = zero
+        \subsubitem halve(succ(zero)) = zero
+        \subsubitem halve(i) = succ(halve(i-2))
+\item odd (predicate for imparity)
+	\subitem Functions: 
+    	\subsubitem Halve: odd $\rightarrow$ Bool
+    \subitem Preconditions: 
+    	\subsubitem -
+	\subitem Axiom:
+        \subsubitem odd(zero) = false
+        \subsubitem odd(succ(zero)) = true
 \end{enumerate}
 
 
