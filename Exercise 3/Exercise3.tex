@@ -125,11 +125,9 @@ morestring=[d]"
 \begin{lstlisting}
 module changeorientation(degree : Real)
 var abs : Real;
-abs := (degree - orientation) mod 360;
-if abs < 180 then
-	left(abs);
-else
-	right(abs)
+abs := orientation();
+if degree $\neq$ d
+	left(degree - d);
 endif
 endmodule
 \end{lstlisting}
@@ -160,10 +158,10 @@ endmodule
 
 \Aufgabe
 \begin{enumerate}
-\item \subitem statement ::= assignment | sequence | conditional | iteration | return
-\subitem return ::= expression ;
+\item statement ::= assignment | sequence | conditional | iteration | return expression
 \item expression ::= arithmeticexpr | booleanexpr | modulecall 
-\item modulecall ::= name(namelist) | name(expression)
+\item \subitem modulecall ::= name(expressionlist) | name(expression)
+\subitem expressionlist ::= expression | expression, expressionlist
 \end{enumerate}
 
 

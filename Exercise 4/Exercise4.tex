@@ -121,6 +121,7 @@ morestring=[d]"
 \item Aufgabe
 \lstalg
 \begin{lstlisting}
+statement;
 while $\neg$booleanexpr do
     statement
 endwhile
@@ -129,10 +130,12 @@ endwhile
 \item Aufgabe
 \lstalg
 \begin{lstlisting}
-repeat
-    statement
-until $\neg$booleanexpr
-endrepeat
+if statement
+    repeat
+        statement
+    until $\neg$booleanexpr
+    endrepeat
+endif
 \end{lstlisting}
 
 \end{enumerate}
@@ -144,11 +147,11 @@ endrepeat
 \item changeorientation method
 \lstalg
 \begin{lstlisting}
-var     degree, abs : Real;
-pre     abs = (degree - orientation) % 360
+var     degree : Real;
+pre     -
 post    orientation() = degree
-reads   orientation
-changes abs, orientation
+reads   degree
+changes -
 mem     - 
 \end{lstlisting}
 
@@ -175,7 +178,7 @@ mem     -
 var		n, prev, curr, fibn : Integer
 pre 	n >= 0, prev = 1, curr = 0, fibn = 0;
 post 	fibn = fibonnaci(n)
-reads 	-
+reads 	n
 changes	prev, curr, fibn
 mem 	-
 \end{lstlisting}
@@ -186,13 +189,12 @@ module fib(n: Integer) : Integer
 	var prev, curr, fibn : Integer;
 	prev := 1;
 	curr := 0;
-	fibn := 0;
+	fibn := 0
 	repeat n times
 		fibn := prev + curr;
 		prev := curr;
 		curr := fibn;
 	endrepeat;
-	return fibn;
 endmodule
 \end{lstlisting}
 \end{enumerate}
