@@ -1,4 +1,4 @@
-##Ex: 6.1
+## Ex: 6.1
 ```
 q:= insert(2,insert(4,new))
 min(insert(4,new)) = 4
@@ -7,7 +7,7 @@ delete_min(insert(4,new)) = new
 ```
 
 
-##Ex:6.2
+## Ex:6.2
 ```
 Type Option [T]
 Functions: 
