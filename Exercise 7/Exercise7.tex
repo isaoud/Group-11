@@ -1,0 +1,298 @@
+% Compile with LuaLaTeX or XeLaTeX!
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+%                          Begin   Header                                      %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\documentclass[a4paper,11pt]{article}             % bestimmt das Aussehen eines Dokuments
+
+\usepackage[ngerman]{babel}         % Neue deutsche Rechtschreibung
+\usepackage[T1]{fontenc}            % Bessere Schriftdarstellung
+\usepackage{lmodern}                % Aktuelle Schrift
+
+\usepackage[intlimits]{amsmath}     % Zusaetzliche Matheumgebungen
+\usepackage{amssymb}                % Mathematische Symbole
+\usepackage{graphicx}               % notwendig fuer \includegraphics
+\usepackage{fancyhdr}               % Kopf- und Fusszeilehttps://www.overleaf.com/9784728wrqtfwfjtvmz#
+\usepackage{lastpage}               % erzeugt Referez zu der letzten Seite
+\usepackage{moreverb}               % verbatimtab Umgeung
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing,shapes,decorations.text,decorations,calc,positioning,automata,matrix,arrows}
+\usepackage{fontspec}
+
+% Java Code Formatting
+\usepackage{fontspec}
+\setmonofont[AutoFakeBold=1.5, AutoFakeSlant=0.4]{Inconsolata}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+% \setmonofont[
+%   AutoFakeSlant,
+%   BoldItalicFeatures={FakeSlant},
+% ]{Inconsolata}
+
+% {
+% Extension = .ttf ,
+% UprightFont = CharisSILR,
+% BoldFont = CharisSILB,
+% ItalicFont = CharisSILI,
+% BoldItalicFont = CharisSILBI,
+% % <any other desired options>
+
+% \newfontfamily{\consolas}{consolas}[Extension = .ttf, UprightFont = *-regular, ItalicFont = *-italic, BoldItalicFont = *-z, BoldFont = *-bold]
+% \setmonofont[UprightFont={[consolas-regular.ttf]}, ItalicFont={[consolas-italic.ttf]}]{Consolas}
+
+% Seiteneinstelungen
+\setlength\textwidth{165mm}           % Breite
+\setlength\textheight{235mm}          % Hoehe
+\setlength\headheight{41pt}           % Hoehe der Kopfzeile
+\setlength\topmargin{-12mm}           % Abstand oben
+\setlength\oddsidemargin{0mm}         % Linker Rand
+\setlength\parindent{0pt}             % und ohne Einrueckung
+\setlength\parskip{1.7\medskipamount} % Absaetze abgesetzt
+\sloppy\pagestyle{fancy}
+
+%Kopf- und Fusszeileeinstellungen
+\renewcommand{\headrulewidth}{0.4pt} 	%obere Trennlinie
+\fancyfoot[C]{Seite:~\thepage~von~\pageref{LastPage}} %Seitennummer
+\renewcommand{\footrulewidth}{0.4pt} 	%untere Trennlinie
+
+% Ein paar hilfreiche Zeichen
+\newcommand{\R}{\mathbb{R}}                 % reelle Zahlen
+\newcommand{\N}{\mathbb{N}}                 % natuerliche Zahlen
+\newcommand{\e}{\text{e}}                   % eulersche Zahl
+\newcommand{\E}[1]{\cdot10^{#1}}            % x 10^{...}
+\newcommand{\qed}{\hspace*{\fill}q.e.d.}    % Beweis fertig
+\newcommand{\ON}[1]{{\cal O}(#1)}	    %O-Notation
+%\newcommand{\Aufgabe}[1]{{\vskip5mm\bf Aufgabe #1.\\}}
+
+\def\vblatt{~}
+\def\vtermin{~}
+\def\vbriefkasten{~}
+
+%Blattnummer, Abgabedatum und Namen mir Matrikelnummern in der Kopfzeile anpassen
+\newcommand{\dreinamen}[6]{\fancyhead[R]{#1 (#2)\\#3 (#4)\\#5 (#6)}} %Kopfzeile rechts
+\fancyhead[C]{\large{\bf{Blatt \vblatt }}}
+\fancyhead[L]{\textbf{Datenstrukturen und Algorithmen}\\ Sommersemester 2017 \\ \"Ubungsgruppe: \vtermin%\\Briefkasten: \vbriefkasten 
+}
+
+\newcommand{\blatt}[1]{\def\vblatt{#1}}
+\newcommand{\termin}[1]{\def\vtermin{#1}}
+\newcommand{\briefkasten}[1]{\def\vbriefkasten{#1}}
+
+%!!!!Neu Einfaches einbinden von Quelltexten
+\usepackage{listings}
+
+%Algorithmennotation als Quelltext verwenden.
+\lstdefinelanguage{alglang}
+{keywords={if, then, endif, else, repeat, until, endrepeat, while, do, endwhile, var, module, endmodule, mod, return, pre, post, reads, changes, mem, Type, Functions, Preconditions, Axioms},
+emph={Integer, Bool, Real, Char, String},
+sensitive=false,
+morecomment=[l]{--},
+morecomment=[s]{\{}{\}},
+morestring=[d]"  
+}
+\lstdefinestyle{algstyle}{
+  mathescape=true, 
+  basicstyle=\normalfont\sffamily, 
+  commentstyle=\normalfont\sffamily, 
+  keywordstyle=\sffamily\bfseries,
+  identifierstyle=\sffamily\itshape, 
+  emphstyle=\normalfont\sffamily, 
+  stringstyle=,
+  showstringspaces=false,        
+  columns=[l]fullflexible     
+}
+
+\lstdefinestyle{javastyle}{
+	basicstyle=\ttfamily, 
+  	commentstyle=\ttfamily, 
+  	keywordstyle=\ttfamily,
+  	identifierstyle=\ttfamily, 
+  	emphstyle=\ttfamily,
+    frame=tb,
+    language=Java,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=3
+}
+
+\newcommand{\lstjava}{\lstset { numbers=left,language=java,tabsize=2,numberstyle=\tiny ,numbersep=5pt,basicstyle=\scriptsize}}
+\newcommand{\lstalg}{\lstset { numbers=left,language=alglang,tabsize=2,numberstyle=\tiny,style=algstyle}}
+
+\newcounter{aufgabe}
+\setcounter{aufgabe}{0}
+
+\newcommand{\Aufgabe}{\noindent\newline\addtocounter{aufgabe}{1}\textbf{Aufgabe \vblatt.\theaufgabe}\\
+%\input{\theaufgabe}\bigskip
+}
+
+% Unteraufgaben (mit Enumeration)
+\def\labelenumi{(\arabic{enumi})}
+\parindent0mm % keine Absatzeinrückung
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+%                           Ende Header                                        %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+
+%!!!!anpassen an das Betriebssystem!!!, um Umlaute zu verwenden
+% \usepackage[utf8]{inputenc}                      %Linux
+%\usepackage[latin1]{inputenc}                    %Windows
+%\usepackage[applemac]{inputenc}                  %Mac
+
+
+%Namen und Matrikelnummern anpassen
+\dreinamen{Ibraheem Saoud}{3041390}{Liang Chun Wong}{3037494}{Miroslav Valov}{3023792} %3er Gruppe
+
+
+%Termin der Uebungsgruppe und Raum anpassen z. B. \termin{Mo 10:15-11:45, BB 915}
+\termin{Di 16:15-18:45, BB 915}
+
+%Blattnummer anpassen z. B. \blatt{1}
+\blatt{7}
+
+
+\begin{document}
+
+\Aufgabe
+\begin{enumerate}
+\item Types
+\subitem MAP[K,V]
+\item Functions
+\subitem mt\_map : MAP[K,V]
+\subitem insert : MAP[K,V] $\times$ K $\times$ V $\nrightarrow$ MAP[K,V]
+\subitem update : MAP[K,V] $\times$ K $\times$ V $\nrightarrow$ MAP[K,V]
+\subitem is\_in\_dom : MAP[K,V] $\times$ K $\rightarrow$ Bool
+\subitem lookup : MAP[K,V] $\times$ K $\rightarrow$ V
+\subitem lookup\_opt : MAP[K,V] $\times$ K $\rightarrow$ Option[V]
+\subitem delete : MAP[K,V] $\times$ K $\nrightarrow$ MAP[K,V]
+\subitem union : MAP[K,V] $\times$ MAP[K,V] $\nrightarrow$ MAP[K,V]
+\subitem size : MAP[K,V] $\rightarrow$ Integer
+% \item Preconditions
+% \subitem $\forall$ m : MAP[K,V]; k : K; v : V $\bullet$ 
+% \subsubitem is\_in\_dom(m, k) \leftrightarrow lookup(m, k)
+% \subsubitem insert(m, k) \leftrightarrow $\not$ lookup
+\subitem 
+\end{enumerate}
+
+\Aufgabe
+\begin{lstlisting}[style=javastyle]
+// Map.java 
+/**
+ * Created by liangchun on 05.06.17.
+ */
+public interface Map<K, V> {
+    void insert(K x, V y);
+    void update(K x, V y);
+    boolean is_in_dom(K x);
+    V lookup(K x);
+    MyOption<V> lookup_opt(K x);
+    void delete(K x);
+    void union(Map<K, V> x);
+    int size();
+}
+\end{lstlisting}
+\newpage
+\begin{lstlisting}[style=javastyle]
+// MyMap.java 
+import java.util.HashMap;
+/**
+ * Created by liangchun on 05.06.17.
+ */
+public class MyMap<K, V> implements Map<K, V> {
+    public HashMap<K, V> map;
+    MyMap() {
+        this.map = new HashMap<>();
+    }
+    public void insert(K x, V y) {
+        if (this.map.get(x) == null)
+            this.map.put(x, y);
+        else
+            this.update(x, y);
+    }
+    public void update(K x, V y) {
+        if (this.map.get(x) != null)
+            this.map.put(x, y);
+    }
+    public V lookup(K x) {
+        return this.map.get(x);
+    }
+    public void delete(K x) {
+        if (this.map.get(x) != null)
+            this.map.remove(x);
+    }
+    public void union(Map<K, V> x) {
+        MyMap<K, V> temp = (MyMap<K, V>) x;
+        temp.map.putAll(this.map);
+        this.map = temp.map;
+    }
+    public boolean is_in_dom(K x) {
+        return (this.map.containsKey(x)) ? true : false;
+    }
+    public int size() {
+        return this.map.size();
+    }
+    public MyOption<V> lookup_opt(K x) {
+        if (this.map.containsKey(x))
+            return new MyOptionSome<>(this.map.get(x));
+        return new MyOptionNone<>();
+    }
+}
+
+
+
+\end{lstlisting}
+\newpage
+\begin{lstlisting}[style=javastyle]
+/**
+ * Created by liangchun on 05.06.17.
+ */
+public class Main {
+    public static void main(String args[]) {
+        MyMap<String, Integer> x = new MyMap<>();
+
+        // insert
+        x.insert("s", 2);
+        System.out.println("Lookup s in x: " + x.lookup("s"));
+
+        // delete
+        x.insert("delete", 123);
+        x.delete("delete");
+        System.out.println("Deleted key-value pair 'delete' from map");
+
+        // lookup
+        System.out.println("Lookup 'delete' in x: " + x.lookup("delete"));
+
+        // is_in_dom
+        System.out.println("Check if delete is_in_dom in x: " + x.is_in_dom("delete"));
+
+        // update
+        x.update("s", 999);
+        System.out.println("Update s to 999: " + x.map);
+
+        // union
+        MyMap<String, Integer> y = new MyMap<>();
+        y.insert("Key", 24);
+        y.union(x);
+        System.out.println("Union map of y with x: " + y.map);
+
+        // size
+        System.out.println("Size of x: " + x.size());
+    }
+}
+
+\end{lstlisting}
+
+
+\end{document}
