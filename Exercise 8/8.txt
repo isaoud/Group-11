@@ -1,0 +1,50 @@
+8.1
+Type QUEUE[T]
+Functions
+
+mt_queue: QUEUE[T]                  constructor
+enqueue: T X QUEUE[T] ⇸ QUEUE[T]  selector
+dequeue: QUEUE[T] ⇸ QUEUE[T]      selector
+head: QUEUE[T] ⇸ T                selector
+empty: QUEUE[T] -> Bool             predicate
+
+Preconditions
+∀ q : QUEUE[T] •
+dequeue(q) ⇔ empty(q) = false
+head(q) ⇔ empty(q) = false
+
+Axioms
+∀ x : T; q : QUEUE[T] •
+
+dequeue(enqueue(x, mt_queue)) = mt_queue
+dequeue(enqueue(x, q)) = enqueue(x, dequeue(q))
+head(enqueue(x, mt_queue)) = x
+head(enqueue(x, q)) = head(q)
+empty(mt_queue) = true
+empty(enqueue(x, q)) = false
+
+
+8.3
+Bubble Sort:
+Stage 0: [3, 1, 6, 7, 2, 5, 4]
+Stage 1: [1, 3, 6, 2, 5, 4, 7]
+Stage 2: [1, 3, 2, 5, 4, 6, 7]
+Stage 3: [1, 2, 3, 4, 5, 6, 7]
+
+Inseration Sort:
+Stage 0: [3, 1, 6, 7, 2, 5, 4]
+Stage 1: [1, 3, 6, 7, 2, 5, 4]
+Stage 2: [1, 3, 6, 7, 2, 5, 4]
+Stage 3: [1, 3, 6, 7, 2, 5, 4]
+Stage 4: [1, 2, 3, 6, 7, 5, 4]
+Stage 5: [1, 2, 3, 5, 6, 7, 4]
+Stage 6: [1, 2, 3, 4, 5, 6, 7]
+
+Selection Sort:
+Stage 0: [3, 1, 6, 7, 2, 5, 4]
+Stage 1: [1, 3, 6, 7, 2, 5, 4]
+Stage 2: [1, 2, 3, 6, 7, 5, 4]
+Stage 3: [1, 2, 3, 4, 6, 7, 5]
+Stage 4: [1, 2, 3, 4, 5, 6, 7]
+Stage 5: [1, 2, 3, 4, 5, 6, 7]
+Stage 6: [1, 2, 3, 4, 5, 6, 7]
