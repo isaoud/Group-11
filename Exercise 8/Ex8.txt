@@ -1,3 +1,6 @@
+// for 8.1 i used the following links: https://xlinux.nist.gov/dads/HTML/queue.html
+// https://www.doc.ic.ac.uk/~ar3/lectures/ProgrammingII/LargePrintOut/Lecture5PrintOut.pdf
+// https://xlinux.nist.gov/dads/HTML/stack.html
 8.1
 Type QUEUE[T]
 
