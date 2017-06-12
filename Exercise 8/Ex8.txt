@@ -6,7 +6,7 @@ Type QUEUE[T]
 
 Functions
 mt_queue: QUEUE[T]                  // constructor
-enqueue: T X QUEUE[T] -> QUEUE[T]   // selector 
+enqueue: T X QUEUE[T] -> QUEUE[T]   // constructor
 dequeue: QUEUE[T] ⇸ QUEUE[T]       // selector
 head: QUEUE[T] ⇸ T                 // selector
 empty: QUEUE[T] -> Bool             // predicate
