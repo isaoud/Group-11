@@ -1,3 +1,28 @@
+8.1
+Type QUEUE[T]
+
+Functions
+mt_queue: QUEUE[T]                  // constructor
+enqueue: T X QUEUE[T] -> QUEUE[T]   // selector 
+dequeue: QUEUE[T] ⇸ QUEUE[T]       // selector
+head: QUEUE[T] ⇸ T                 // selector
+empty: QUEUE[T] -> Bool             // predicate
+
+Preconditions
+∀ q : QUEUE[T] •
+pre(dequeue(q)) ⇔ empty(q) = false
+pre(head(q)) ⇔ empty(q) = false
+
+Axioms
+∀ x, y : T; q : QUEUE[T] •
+dequeue(enqueue(x, mt_queue)) = mt_queue
+dequeue(enqueue(x, enqueue(y, q))) = enqueue(x, dequeue(enqueue(y, q)))
+head(enqueue(x, mt_queue)) = x
+head(enqueue(x, enqueue(y, q))) = head(enqueue(y, q))
+empty(mt_queue) = true
+empty(enqueue(x, q)) = false
+
+
 8.3
 Bubble Sort:
 start a: [3, 1, 6, 7, 2, 5, 4]
