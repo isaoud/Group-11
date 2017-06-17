@@ -1,0 +1,80 @@
+Exercise 9.1:
+
+var A: ARRAY(i ... j)[T], k: Integer
+pre j > 0
+post true iff A is ordered, false otherwise
+reads -
+changes k
+mem −
+
+module sorted(A : (i ...j)ARRAY[T]) : Bool
+    {pre: j > 0}
+
+    var k: Integer;
+    k := i;
+
+    while k < j do
+        if A[k] > A[k + 1]
+            then return false;
+        endif
+    endwhile
+
+    return true
+endmodule
+
+complexity:
+intilization and decleration of variables has the complexity of O(1)
+the while loop could go n times in worst case (case orderd) => complexity of O(n)
+the if and what is inside it has a complexity of O(1)
+=> the while loop has a complexity of O(n * 1) => O(n)
+the return in the end has a complexity of O(1)
+=> total complexity is O(1) + O(n) + O(1) = O(n).
+
+
+
+Exercise 9.2:
+
+var A, B: ARRAY(i ... j)[T], n, k: Integer, C: MAP[T, INTEGER]
+pre j > 0
+post true iff A and B are permutations of eachother, false otherwise
+reads -
+changes n, k, C
+mem −
+
+module Per(A, B: ARRAY(i ... j)[T]) : Bool
+    {pre: j > 0}
+
+    var n, k: Integer, C: MAP[T, INTEGER];
+    n := j - i + 1;
+    k := i;
+    
+    while k <= j do
+        insert(A[k], C[A[k]] + 1, C);
+        insert(B[k], C[B[k]] - 1, C);
+        
+        if C[A[k]] != 0 
+            then n := n - 1
+        endif
+        
+        if C[B[k]] = 0 
+            then n := n + 1
+        endif
+        
+        k := k + 1;
+    endwhile
+
+    if n := j - i + 1
+        then return true
+        else return false
+    endif
+endmodule
+
+complexity:
+
+everything before the while has a complexity of O(1)
+while has a complexity on O(N) in itself
+the insert function has a complexity of O(logn) in worst case
+all other lines have a complexity of O(1) (the if, inside the if)
+the last if has an else, but both sides have a complexity of O(1)
+=> the entire complexity is complexity of while * complexity of insert 
+=> O(n * logn)
