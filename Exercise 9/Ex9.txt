@@ -1,0 +1,34 @@
+8.1
+(1) 
+var: a : ARRAY[T]
+pre: -
+pos: ordered(a)
+reads: -
+change: a
+mem: -
+ 
+(2) 
+
+
+8.2
+(1) 
+var: a, b : ARRAY(i..j)[T]
+pre: b = a
+pos: permutation(a,b)
+reads: -
+change: a
+mem: b
+
+(2) 
+
+
+9.3 
+module total(P:LIST [Char]):Bool
+"constant text of funnyp for P"
+module equivalent (P, P' : LIST [Char]): Bool
+If (equivalent (P, P'))
+   then return true
+   else return false
+endif
+endmodule
+endmodule
