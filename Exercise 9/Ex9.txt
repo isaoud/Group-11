@@ -23,12 +23,15 @@ mem: b
 
 
 9.3 
-module total(P:LIST [Char]):Bool
-"constant text of funnyp for P"
-module equivalent (P, P' : LIST [Char]): Bool
-If (equivalent (P, P'))
-   then return true
-   else return false
-endif
+module CONST(x: T):Bool
+	"ignores input and return true"
+	return true
 endmodule
+
+"P' is the constant text of CONST"
+module equivalent (P, P' : LIST [Char]): Bool
+	If total(P) = total(P')
+   		then return true
+   		else return false
+	endif
 endmodule
