@@ -1,0 +1,8 @@
+O(1) = f4
+O(log logn) = f5
+O(logn) = f2, f10
+O(n) = f8
+O(nlogn) = f7, f11
+O(n^2) = f3, f12
+O(n^7) = f1, f9
+O(2^n) = f6
