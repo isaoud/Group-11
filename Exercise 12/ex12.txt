@@ -6,4 +6,7 @@
 (5) depth of node 7: 4
 (6) degree: 2
 (7) degree of node 10: 1
-(8) Yes, because ...
+(8) Yes, because of the following:
+BalanceFactor(N):= Height(RightSubtree(N)) - Height(LeftSubtree(N)) = 5 - 4 = 1
+As we know an AVL tree is a balanced search tree. And a tree is balanced if for each node the heights of its subtrees differ by at most 1 (-1, 0, 1).
+We can conclude that our tree is an AVL tree.
